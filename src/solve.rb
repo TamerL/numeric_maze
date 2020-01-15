@@ -1,27 +1,33 @@
 def solve(a,b)
-arr1 = [[a]]
-arr2 = []
-while true do
-  arr2 = []
-  while arr1.length > 0 do
 
-    temp = arr1.shift
-    element = temp[-1]
+  ways = [[a]]
 
-    return temp + [b] if element * 2 == b || element + 2 == b
+  while true do
+    final = []
+    i = 0
 
-    insert = [element * 2, element + 2]
+    while i < ways.length do
+      element = ways[i][-1]
 
-    insert << element / 2 if (element % 2 == 0 && element != 2)
+      x  = element * 2
+      return ways[i] << x if x == b
 
-    return temp + [b] if insert.include?(b)
+      y = 2 + element
+      return ways[i] << y if y == b
 
-    insert.uniq.each do |dig|
-      result = temp.dup
-      arr2 << result + [dig]
+      insert = [x,y]
+
+      if element % 2 == 0 && element != 2
+        z =  element / 2
+        return ways[i] << z if z == b
+        insert << z
+      end
+
+      insert.uniq.each { |val| temp = ways[i].dup; temp << val ; final << temp}
+
+      i+=1
     end
-  end
 
-  arr1 = arr2.dup
-end
+    ways = final.dup
+  end
 end

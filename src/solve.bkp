@@ -1,0 +1,53 @@
+def solve(a,b)
+  ways = [[a]]
+  result = [a]
+  common = 0
+  p a,b
+  while result[-1] != b do
+    index = 0
+    ways.each do
+      result = ways[index].dup
+      pp "ways[index] #{ways[index]}"
+      pp "result #{result}"
+      pp "ways[index] #{ways[index]}"
+      pp "result #{result}"
+      pp result[-1]
+      break if result[-1] == b
+      # ways.delete_at(index)
+      x = result.dup
+      y = result.dup
+      z = result.dup
+      if result[-1] % 2 == 0
+        ways.insert(index,x << x[-1] / 2)
+        index += 1
+      end
+      ways.insert(index,y << 2 + y[-1])
+      ways.insert(index,z << 2 * z[-1])
+      index += 2
+      pp "result #{result}"
+      pp "ways[index] #{ways[index]}"
+      pp "ways #{ways}"
+      pp "result #{result}"
+      pp "index #{index}"
+      break if index == 9
+    end
+    break if index == 9
+  end
+  p "result #{result}"
+  p "hi"
+end
+# if last[-1] > first[-1]
+#   dist = last[-1] - first[-1]
+#   if last[-1]/(first[-1] * 2) <  last[-1]/(first[-1] + 2)
+#     first << 2 * first[-1]
+#   else
+#     first << 2 + first[-1]
+#   end
+#   while last[-1] > first[-1] + 2 && do
+#     first << 2 + first[-1]
+#   end
+#   dist = last[-1] - first[-1]
+#   if dist % 2 == 0
+#
+#
+#     while first[-1] != last[-1]
